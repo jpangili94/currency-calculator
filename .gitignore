@@ -1,0 +1,11 @@
+.DS_Store
+.vagrant
+node_modules
+.eslintrc.*
+*.box
+
+# Logs
+npm-debug.log*
+
+# Runtime data
+*.seed
