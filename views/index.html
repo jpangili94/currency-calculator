@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<title>Currency Calculator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+<body>
+	<header>
+	<h1>Currency Calculator</h1>
+	</header>
+	<main>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<form>
+						<label>Amount:</label>
+						<input type="text" name="Amount" placeholder="Enter an amount" ng-model="amnt" id="amntIn">
+						<br>
+						<label>Rate:</label>
+						<input type="text" name="Rate" placeholder="Enter a rate" ng-model="rate" id="rateIn">
+					</form>
+					<button onclick="myFunction()">Calculate</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>Amount: {{amnt}}</p>
+					<p>Rate: {{rate}}</p>
+					<p>Converted Amount: <span id="value"></span></p>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+<script>
+	function myFunction(){
+		var amnt = (getElementById("amntIn"));
+		document.getElementById("value").innerHTML = getElementById("amntIn");
+		// var rate = parseInt(getElementById("rateIn"));
+		// var val = amnt * rate;
+		// var x = val.toString();
+		// document.getElementById("value").innerHTML = x;
+		//or window.alert();
+	}
+</script>
+</html>

@@ -1,43 +1,28 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+const expressSession = require('express-session');
+const mongoose = require('mongoose');
+const methodOverride = require('method-override');
+// const models = require('../models');
+
+// mongoose.connect('mongodb://localhost/[db name]');
+
 const app = express();
+app.use(methodOverride('_method'));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(flash());
+app.use(expressSession(({ secret: 'keyboard cat', resave: false, saveUninitialized: true })));
 
 // Load Controllers
 const index = require('./controllers/index');
-const users = require('./controllers/users');
 
 // Mount Controllers
-app.use('/', index);
-app.use('/users', users);
+app.use('/', index.registerRouter());
 
+// Export the app
 module.exports = app;
 app.listen(8005);
-
-// // Consuming query parameters
-// app.get('/users/:username', (req, res) => {
-//   let msg = 'The username is: ' + req.params.username;
-//   if (req.query.test != null) {
-//     msg += ' -- A test query received!'
-//   }
-//   res.send(msg);
-// });
-
-// // Consuming route parameters
-// app.get('/users/:username', (req, res) => {
-//   res.send('The username is:' + req.params.username);
-// });
-
-
-// // GET method route
-// app.get('/', function(req, res){
-// 	res.send("Get request to the homepage");
-// });
-
-// // POST method route
-// app.post('/', function (req, res) {
-//   res.send('POST request to the homepage');
-// });
-
-// // Responding to an /articles route
-// app.get('/articles', function (req, res) {
-//   res.send('In articles listing page.')
-// });

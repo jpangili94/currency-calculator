@@ -1,14 +1,19 @@
 const express = require('express');
-const router = express.Router();
 
-router.use(function timeLog(req, res, next){
-	console.log("Index Controller :: Time: ", Date.now());
-	next();
-})
+module.exports = {
+	registerRouter() {
+		const router = express.Router();
 
-// Define the root Index router
-router.get('/', function(req, res){
-	res.send('Home Page');
-});
+		router.use(function timeLog(req, res, next){
+			console.log("Index Controller :: Time: ", Date.now());
+			next();
+		})
 
-module.exports = router;
+		router.get('/', this.index);
+
+		return router;
+	},
+	index(req, res){
+		res.send('Home Page');
+	}
+};
