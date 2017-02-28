@@ -5,15 +5,14 @@ module.exports = {
 		const router = express.Router();
 
 		router.use(function timeLog(req, res, next){
-			console.log("Index Controller :: Time: ", Date.now());
-			next();
-		})
+			console.log("Currency Controller :: Time: ", Date.now());
+		});
 
 		router.get('/', this.index);
 
 		return router;
 	},
 	index(req, res){
-		res.send('Home Page');
+		res.send("Here are a list of currencies available in our program:");
 	},
 };

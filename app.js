@@ -17,11 +17,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
 app.use(expressSession(({ secret: 'keyboard cat', resave: false, saveUninitialized: true })));
 
+
 // Load Controllers
 const index = require('./controllers/index');
+const currency = require('./controllers/currency');
 
 // Mount Controllers
 app.use('/', index.registerRouter());
+app.use('/currency', currency.registerRouter());
 
 // Export the app
 module.exports = app;
