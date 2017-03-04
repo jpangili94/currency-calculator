@@ -30,13 +30,16 @@ function errorHandler(err, req, res, next){
 	res.status(500).render('error_template', { error : err });
 }
 
-// MongoDB Connection - includes all code below?
-mongoose.connect('mongodb://localhost/[dbname]');
+// MongoDB Connection
+mongoose.connect('mongodb://localhost/currencyDB');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-	console.log("Successfully connected to MongoDB.");
+	console.log("Successfully connected to MongoDB.\nConnected to Port 8005");
+
+	// Load Models
+	app.models = require('./models/index');
 
 	// Load Controllers
 	const index = require('./controllers/index');
