@@ -1,4 +1,3 @@
-
 const express = require('express');
 
 module.exports = {
@@ -7,13 +6,14 @@ module.exports = {
 
 		router.use(function timeLog(req, res, next){
 			console.log("Currency Controller :: Time: ", Date.now());
-		});
+			next();
+		})
 
 		router.get('/', this.index);
 
 		return router;
 	},
 	index(req, res){
-		res.send("Here are a list of currencies available in our program:");
+		res.render('currency');
 	},
 };

@@ -1,4 +1,5 @@
 const express = require('express');
+const engines = require('consolidate');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
@@ -6,8 +7,6 @@ const expressSession = require('express-session');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 // const models = require('../models');
-
-// mongoose.connect('mongodb://localhost/[db name]');
 
 const app = express();
 app.use(methodOverride('_method'));
@@ -17,6 +16,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
 app.use(expressSession(({ secret: 'keyboard cat', resave: false, saveUninitialized: true })));
 
+// View Engine
+app.engine('html', engines.nunjucks);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+app.use(bodyParser.urlencoded({ extended : true }));
+
+// Handler for internal server errors
+function errorHandler(err, req, res, next){
+	console.error(err.message);
+	console.error(err.stack);
+	res.status(500).render('error_template', { error : err });
+}
+
+// // MongoDB Connection - includes all code below?
+// mongoose.connect('mongodb://localhost/currency_calc');
+
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+// 	// 
+//   console.log("Successfully connected to MongoDB.");
+// });
 
 // Load Controllers
 const index = require('./controllers/index');

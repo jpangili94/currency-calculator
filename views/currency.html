@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block header %}
+	<h1>Currency Calculator</h1>
+{% endblock %}
+
+{% block main %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<form>
+					<label>Amount:</label>
+					<input type="text" name="Amount" placeholder="Enter an amount" ng-model="amnt" id="amntIn">
+					<br>
+					<label>Rate:</label>
+					<input type="text" name="Rate" placeholder="Enter a rate" ng-model="rate" id="rateIn">
+				</form>
+				<button onclick="myFunction()">Calculate</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p>Amount: {{amnt}}</p>
+				<p>Rate: {{rate}}</p>
+				<p>Converted Amount: <span id="value"></span></p>
+			</div>
+		</div>
+	</div>
+{% endblock %}
