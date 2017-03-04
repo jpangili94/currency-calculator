@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
 app.use(expressSession(({ secret: 'keyboard cat', resave: false, saveUninitialized: true })));
+app.use(express.static(__dirname + '/public'));
 
 // View Engine
 app.engine('html', engines.nunjucks);
@@ -29,24 +30,24 @@ function errorHandler(err, req, res, next){
 	res.status(500).render('error_template', { error : err });
 }
 
-// // MongoDB Connection - includes all code below?
-// mongoose.connect('mongodb://localhost/currency_calc');
+// MongoDB Connection - includes all code below?
+mongoose.connect('mongodb://localhost/test');
 
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-// 	// 
-//   console.log("Successfully connected to MongoDB.");
-// });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+	console.log("Successfully connected to MongoDB.");
 
-// Load Controllers
-const index = require('./controllers/index');
-const currency = require('./controllers/currency');
+	// Load Controllers
+	const index = require('./controllers/index');
+	const currency = require('./controllers/currency');
 
-// Mount Controllers
-app.use('/', index.registerRouter());
-app.use('/currency', currency.registerRouter());
+	// Mount Controllers
+	app.use('/', index.registerRouter());
+	app.use('/currency', currency.registerRouter());
 
-// Export the app
-module.exports = app;
-app.listen(8005);
+	// Export the app
+	module.exports = app;
+	app.listen(8005);
+
+});
