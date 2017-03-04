@@ -31,7 +31,7 @@ function errorHandler(err, req, res, next){
 }
 
 // MongoDB Connection - includes all code below?
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/[dbname]');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
