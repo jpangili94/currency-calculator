@@ -6,7 +6,7 @@ const flash = require('connect-flash');
 const expressSession = require('express-session');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-// const models = require('../models');
+const models = require('../models');
 
 const app = express();
 app.use(methodOverride('_method'));
