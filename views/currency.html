@@ -7,6 +7,14 @@
 {% block main %}
 	<div class="container-fluid">
 		<div class="row">
+			<ul>
+			{% for curr in currency %}
+				<li>{{curr.base}}, {{curr.date}}, {{curr.rate}}</li>
+				<li>End of the list</li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div class="row">
 			<div class="col-md-12">
 				<form>
 					<label>Amount:</label>

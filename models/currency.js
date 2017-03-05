@@ -9,7 +9,7 @@ var CurrencySchema = new mongoose.Schema({
 		type: Date,
 		required: true
 	},
-	rate: {
+	rate: { //Is this the correct format for key-value pair?
 		key: {
 			type: String,
 			required: true
