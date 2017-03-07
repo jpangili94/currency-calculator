@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var CurrencySchema = new mongoose.Schema({
+var ExchangeRatesSchema = new mongoose.Schema({
 	base: {
 		type: String,
 		required: true
@@ -21,4 +21,4 @@ var CurrencySchema = new mongoose.Schema({
 	}
 });
 
-module.exports = CurrencySchema;
+module.exports = ExchangeRatesSchema;

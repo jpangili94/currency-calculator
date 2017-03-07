@@ -31,7 +31,7 @@ function errorHandler(err, req, res, next){
 }
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost/currencyDB');
+mongoose.connect('mongodb://localhost/exchangeRatesDB');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
