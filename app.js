@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const expressSession = require('express-session');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const fixer = require('node-fixer-io');
 
 const app = express();
 app.use(methodOverride('_method'));
