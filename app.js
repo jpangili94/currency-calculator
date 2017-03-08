@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended : true }));
 function errorHandler(err, req, res, next){
 	console.error(err.message);
 	console.error(err.stack);
-	res.status(500).render('error_template', { error : err });
+	res.status(500).render('errorTemplate', { error : err });
 }
 
 // MongoDB Connection
@@ -43,11 +43,11 @@ db.once('open', function() {
 
 	// Load Controllers
 	const index = require('./controllers/index');
-	const currency = require('./controllers/currency');
+	const calculator = require('./controllers/calculator');
 
 	// Mount Controllers
 	app.use('/', index.registerRouter());
-	app.use('/currency', currency.registerRouter());
+	app.use('/calculator', calculator.registerRouter());
 
 	// Export the app
 	module.exports = app;

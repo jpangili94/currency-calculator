@@ -17,11 +17,11 @@ module.exports = {
 		return router;
 	},
 	index(req, res){
-		res.render('currency', {});
+		res.render('calculator', {});
 	},
 	submit(req, res){
-		console.log(req.body);
-		var fromCurrency = req.body.fromCurrency,
+		console.log(JSON.stringify(req.body));
+		var fromCurrency = req.body.fromCurrency;
 				toCurrency = req.body.toCurrency,
 				amount = req.body.amount;
 		if (( typeof fromCurrency == '' ) || ( toCurrency == '' ) || ( amount == '' )){
