@@ -1,29 +1,27 @@
 const express = require('express');
+const models = require('../models');
+const fx = require('money');
+const oxr = require('open-exchange-rates');
+oxr.set({ app_id: '359eaa80531846d49379a218e6520bac' });
 
 module.exports= {
-	regesterRouter() {
+	registerRouter() {
 		const router = express.Router();
 
 		router.use(function timeLog(req, res, next){
-			console.log("Currency API :: Time: ", Date.now());
+			console.log("Dashboard API :: Time: ", Date.now());
 			next();
 		})
 
 		router.get('/', this.index);
-		router.post('/', this.list);
 
 		return router;
 	},
 	index(req, res){
-		// Save the api data into the database
-		$.getJSON("http://api.fixer.io/latest?base=USD", function(data) {
-			console.log(JSON.stringify(data));
+		oxr.latest(function(){
+			var rates = oxr.rates;
+			var base = oxr.base;
+			console.log(base);
 		});
-	},
-	list(req, res, next){
-		// List all the rates for a selected base currency
-		var findBase = req.body.base;
-
-		db.currencyDB.find({ base: findBase })
 	}
-}
+};

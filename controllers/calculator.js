@@ -1,6 +1,8 @@
 const express = require('express');
 const models = require('../models');
-const fixer = require('node-fixer-io');
+const fx = require('money');
+const oxr = require('open-exchange-rates');
+oxr.set({ app_id: '359eaa80531846d49379a218e6520bac' });
 
 module.exports = {
 	registerRouter() {
@@ -21,15 +23,17 @@ module.exports = {
 	},
 	submit(req, res){
 		console.log(JSON.stringify(req.body));
-		var fromCurrency = req.body.fromCurrency;
+		var fromCurrency = req.body.fromCurrency,
 				toCurrency = req.body.toCurrency,
 				amount = req.body.amount;
 		if (( typeof fromCurrency == '' ) || ( toCurrency == '' ) || ( amount == '' )){
 			console.log("Please provide an entry for all fields.");
 		} else {
-			fixer.get(function (err, res, body) {
-				var newAmount = fixer.convert(fromCurrency, toCurrency, amount);
-				console.log(newAmount);
+			oxr.latest(function(){
+				fx.rates = oxr.rates;
+				fx.base = oxr.base;
+				
+				console.log(fx(amount).from(fromCurrency).to(toCurrency));
 			});
 		}
 	}

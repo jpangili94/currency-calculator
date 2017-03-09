@@ -6,7 +6,8 @@ const flash = require('connect-flash');
 const expressSession = require('express-session');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const fixer = require('node-fixer-io');
+const oxr = require('open-exchange-rates');
+const fx = require('money');
 
 const app = express();
 app.use(methodOverride('_method'));
@@ -44,10 +45,12 @@ db.once('open', function() {
 	// Load Controllers
 	const index = require('./controllers/index');
 	const calculator = require('./controllers/calculator');
+	const dashboard = require('./controllers/dashboard');
 
 	// Mount Controllers
 	app.use('/', index.registerRouter());
 	app.use('/calculator', calculator.registerRouter());
+	app.use('/dashboard', dashboard.registerRouter());
 
 	// Export the app
 	module.exports = app;
