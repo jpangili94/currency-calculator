@@ -25,7 +25,8 @@ module.exports = {
 		console.log(JSON.stringify(req.body));
 		var fromCurrency = req.body.fromCurrency,
 				toCurrency = req.body.toCurrency,
-				amount = req.body.amount;
+				amount = req.body.amount,
+				newAmount;
 		if (( typeof fromCurrency == '' ) || ( toCurrency == '' ) || ( amount == '' )){
 			console.log("Please provide an entry for all fields.");
 		} else {
@@ -33,8 +34,11 @@ module.exports = {
 				fx.rates = oxr.rates;
 				fx.base = oxr.base;
 				
-				console.log(fx(amount).from(fromCurrency).to(toCurrency));
+				newAmount = fx(amount).from(fromCurrency).to(toCurrency);
+				console.log(newAmount);
+				res.json(newAmount);
 			});
 		}
+		// res.send({amount: amount, newAmount: newAmount, success: req.flash('success') });
 	}
 };

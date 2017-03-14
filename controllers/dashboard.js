@@ -18,10 +18,14 @@ module.exports= {
 		return router;
 	},
 	index(req, res){
+		var rates,
+				base
 		oxr.latest(function(){
-			var rates = oxr.rates;
-			var base = oxr.base;
+			rates = oxr.rates;
+			base = oxr.base;
 			console.log(base);
+			console.log(rates);
 		});
+		res.render('dashboard', {base: oxr.base, rates: oxr.rates, success: req.flash('success') });
 	}
 };
