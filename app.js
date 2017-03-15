@@ -32,11 +32,11 @@ function errorHandler(err, req, res, next){
 }
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost/exchangeRatesDB');
+// mongoose.connect('mongodb://localhost/exchangeRatesDB');
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {});
 	console.log("Successfully connected to MongoDB.\nConnected to Port 8005");
 
 	// Load Models
@@ -55,5 +55,3 @@ db.once('open', function() {
 	// Export the app
 	module.exports = app;
 	app.listen(8005);
-
-});

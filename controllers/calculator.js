@@ -26,19 +26,21 @@ module.exports = {
 		var fromCurrency = req.body.fromCurrency,
 				toCurrency = req.body.toCurrency,
 				amount = req.body.amount,
-				newAmount;
+				newAmount,
+				note;
 		if (( typeof fromCurrency == '' ) || ( toCurrency == '' ) || ( amount == '' )){
-			console.log("Please provide an entry for all fields.");
+			note = "Please provide an entry for all fields.";
+			console.log(note);
+			res.render('calculator', {note: note});
 		} else {
 			oxr.latest(function(){
 				fx.rates = oxr.rates;
 				fx.base = oxr.base;
 				
-				newAmount = fx(amount).from(fromCurrency).to(toCurrency);
+				newAmount = Math.round(fx(amount).from(fromCurrency).to(toCurrency));
 				console.log(newAmount);
-				res.json(newAmount);
+				res.render('calculator', {amount: amount, newAmount: newAmount, success: req.flash('success')});
 			});
 		}
-		// res.send({amount: amount, newAmount: newAmount, success: req.flash('success') });
 	}
 };
