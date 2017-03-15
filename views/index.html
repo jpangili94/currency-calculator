@@ -37,24 +37,5 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 	<script src="https://use.fontawesome.com/4cc69e9f3a.js"></script>
-	<script>
-		$(document).ready(function(){
-			$(".button-collapse").sideNav();
-		});
-	</script>
-	<script type="text/javascript">
-		function myFunction(){
-			// var myBase = $('input[id=base').val();
-			var myAmnt = parseInt($('input[id=amount]').val());
-			var myRate = parseInt($('input[id=rate]').val());
-			var value = myAmnt * myRate;
-			var val = value.toString();
-			document.getElementById("myValue").innerHTML = val;
-		}
-
-		$.getJSON("http://api.fixer.io/latest?base=USD", function(data) {
-			console.log(data)
-		})
-	</script> 
 </body>
 </html>
