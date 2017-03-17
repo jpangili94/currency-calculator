@@ -25,6 +25,7 @@ app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
+
 // View Engine
 app.engine('html', engines.nunjucks);
 app.set('view engine', 'html');
@@ -39,11 +40,11 @@ function errorHandler(err, req, res, next){
 }
 
 // MongoDB Connection
-mongoose.connect(config.database);
+// mongoose.connect(config.database);
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {});
 	console.log("Successfully connected to Database.\n" + config.database + "\nConnected to Port 8005");
 
 	// Load Models
@@ -62,4 +63,3 @@ db.once('open', function() {
 	// Export the app
 	module.exports = app;
 	app.listen(8005);
-});

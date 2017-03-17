@@ -37,7 +37,7 @@ module.exports = {
 				fx.rates = oxr.rates;
 				fx.base = oxr.base;
 				
-				newAmount = Math.round(fx(amount).from(fromCurrency).to(toCurrency));
+				newAmount = fx(amount).from(fromCurrency).to(toCurrency);
 				console.log(newAmount);
 				res.render('calculator', {amount: amount, newAmount: newAmount, success: req.flash('success')});
 			});
