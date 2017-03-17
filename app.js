@@ -8,6 +8,10 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const oxr = require('open-exchange-rates');
 const fx = require('money');
+const config = require('./config/database');
+const cors = require('cors');
+const passport = require('passport');
+const path = require('path');
 
 const app = express();
 app.use(methodOverride('_method'));
@@ -17,7 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
 app.use(expressSession(({ secret: 'keyboard cat', resave: false, saveUninitialized: true })));
 app.use(express.static(__dirname + '/public'));
-
+app.use(cors());
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
 // View Engine
 app.engine('html', engines.nunjucks);
 app.set('view engine', 'html');
@@ -32,12 +39,12 @@ function errorHandler(err, req, res, next){
 }
 
 // MongoDB Connection
-// mongoose.connect('mongodb://localhost/exchangeRatesDB');
+mongoose.connect(config.database);
 
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {});
-	console.log("Successfully connected to MongoDB.\nConnected to Port 8005");
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+	console.log("Successfully connected to Database.\n" + config.database + "\nConnected to Port 8005");
 
 	// Load Models
 	app.models = require('./models/index');
@@ -55,3 +62,4 @@ function errorHandler(err, req, res, next){
 	// Export the app
 	module.exports = app;
 	app.listen(8005);
+});
