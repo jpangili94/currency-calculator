@@ -14,6 +14,6 @@ module.exports = {
 		return router;
 	},
 	index(req, res){
-		res.render('index', {});
+		res.render('landing', {});
 	},
 };
