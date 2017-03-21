@@ -40,11 +40,11 @@ function errorHandler(err, req, res, next){
 }
 
 // MongoDB Connection
-// mongoose.connect(config.database);
+mongoose.connect(config.database);
 
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {});
+var db = mongoose.createConnection(config.database);
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
 	console.log("Successfully connected to Database.\n" + config.database + "\nConnected to Port 8005");
 
 	// Load Models
@@ -63,3 +63,4 @@ function errorHandler(err, req, res, next){
 	// Export the app
 	module.exports = app;
 	app.listen(8005);
+});
