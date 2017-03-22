@@ -54,11 +54,13 @@ db.once('open', function() {
 	const index = require('./controllers/index');
 	const calculator = require('./controllers/calculator');
 	const dashboard = require('./controllers/dashboard');
+	const users = require('./controllers/users');
 
 	// Mount Controllers
 	app.use('/', index.registerRouter());
 	app.use('/calculator', calculator.registerRouter());
 	app.use('/dashboard', dashboard.registerRouter());
+	app.use('/users', users.registerRouter());
 
 	// Export the app
 	module.exports = app;
