@@ -71,6 +71,6 @@ module.exports = {
 	},
 	// Protected dashboard route
 	dashboard(req, res, next){
-		res.json({user: req.user});
+		res.json({user: req.user}); //send the profile data
 	}
 };

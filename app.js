@@ -1,17 +1,17 @@
-const express = require('express');
-const engines = require('consolidate');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const flash = require('connect-flash');
-const expressSession = require('express-session');
-const mongoose = require('mongoose');
-const methodOverride = require('method-override');
-const oxr = require('open-exchange-rates');
-const fx = require('money');
-const config = require('./config/database');
-const cors = require('cors');
-const passport = require('passport');
-const path = require('path');
+const express = require('express'),
+ engines = require('consolidate'),
+ bodyParser = require('body-parser'),
+ cookieParser = require('cookie-parser'),
+ flash = require('connect-flash'),
+ expressSession = require('express-session'),
+ mongoose = require('mongoose'),
+ methodOverride = require('method-override'),
+ oxr = require('open-exchange-rates'),
+ fx = require('money'),
+ config = require('./config/database'),
+ cors = require('cors'),
+ passport = require('passport'),
+ path = require('path');
 
 const app = express();
 app.use(methodOverride('_method'));
@@ -51,10 +51,10 @@ db.once('open', function() {
 	app.models = require('./models/index');
 
 	// Load Controllers
-	const index = require('./controllers/index');
-	const calculator = require('./controllers/calculator');
-	const dashboard = require('./controllers/dashboard');
-	const users = require('./controllers/users');
+	const index = require('./controllers/index'),
+	 calculator = require('./controllers/calculator'),
+	 dashboard = require('./controllers/dashboard'),
+	 users = require('./controllers/users');
 
 	// Mount Controllers
 	app.use('/', index.registerRouter());

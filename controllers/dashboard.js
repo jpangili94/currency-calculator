@@ -1,7 +1,7 @@
-const express = require('express');
-const models = require('../models');
-const fx = require('money');
-const oxr = require('open-exchange-rates');
+const express = require('express'),
+ models = require('../models'),
+ fx = require('money'),
+ oxr = require('open-exchange-rates');
 oxr.set({ app_id: '359eaa80531846d49379a218e6520bac' });
 
 module.exports= {
