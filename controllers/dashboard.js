@@ -24,8 +24,8 @@ module.exports= {
 			rates = oxr.rates;
 			base = oxr.base;
 			console.log(base);
-			console.log(rates);
+			console.log(rates.AED);
 		});
-		res.render('dashboard', {base: oxr.base, rates: oxr.rates, success: req.flash('success') });
+		res.render('dashboard', {base: oxr.base, rates: oxr.rates.AED, success: req.flash('success') });
 	}
 };
