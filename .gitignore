@@ -3,6 +3,7 @@
 node_modules
 .eslintrc.*
 *.box
+config
 
 # Logs
 npm-debug.log*
