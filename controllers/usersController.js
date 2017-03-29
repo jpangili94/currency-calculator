@@ -6,19 +6,6 @@ const express = require('express'),
 	User = require('../models/user');
 
 module.exports = {
-	registerRouter() {
-		const router = express.Router();
-
-		router.use(function timeLog(req, res, next){
-			console.log("Users Controller :: Time: ", Date.now());
-			next();
-		});
-		router.post('/register', this.register);
-		router.post('/authenticate', this.authenticate);
-		router.get('/dashboard', passport.authenticate('jwt', {session: false}), this.dashboard);
-
-		return router;
-	},
 	register(req, res, next){
 		let newUser = new User({
 			name: req.body.name,
@@ -70,7 +57,7 @@ module.exports = {
 		});
 	},
 	// Protected dashboard route
-	dashboard(req, res, next){
+	profile(req, res, next){
 		res.json({user: req.user}); //send the profile data
 	}
 };

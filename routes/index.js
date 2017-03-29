@@ -1,4 +1,5 @@
-const express = require('express');
+const express = require('express'),
+	indexController = require('../controllers/indexController');
 
 module.exports = {
 	registerRouter() {
@@ -9,11 +10,8 @@ module.exports = {
 			next();
 		})
 
-		router.get('/', this.index);
+		router.get('/', indexController.index);
 
 		return router;
-	},
-	index(req, res){
-		res.render('landing', {});
-	},
+	}
 };

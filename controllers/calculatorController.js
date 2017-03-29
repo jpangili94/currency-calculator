@@ -6,20 +6,6 @@ const express = require('express'),
 oxr.set({app_id: config.key});
 
 module.exports = {
-	registerRouter() {
-		const router = express.Router();
-
-		router.use(function timeLog(req, res, next){
-			console.log("Currency Controller :: Time: ", Date.now());
-			next();
-		})
-
-		router.get('/', this.index);
-		router.post('/', this.submit);
-		router.get('/', this.latest);
-
-		return router;
-	},
 	index(req, res){
 		res.render('calculator', {});
 	},
@@ -48,8 +34,5 @@ module.exports = {
 				res.render('calculator', {amount: amount, newAmount: newAmount, exchRate: exchRate, success: req.flash('success')});
 			});
 		}
-	},
-	latest(req, res){
-		
 	}
 };
