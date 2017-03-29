@@ -12,7 +12,7 @@
 				<div class="col-md-6">
 				<label>Base Currency</label>
 					<select required="required" class="form-control" name="fromCurrency">
-						<option selected>Select Base Currency</option>
+						<option value="" selected>Select Base Currency</option>
 						<option value="AUD">AUD</option>
 						<option value="BGN">BGN</option>
 						<option value="BRL">BRL</option>
@@ -49,7 +49,7 @@
 				<div class="col-md-6">
 				<label>Current Currency</label>
 					<select required="required" class="form-control" name="toCurrency">
-						<option selected>Select Current Currency</option>
+						<option value="" selected>Select Current Currency</option>
 						<option value="AUD">AUD</option>
 						<option value="BGN">BGN</option>
 						<option value="BRL">BRL</option>
@@ -83,17 +83,21 @@
 						<option value="ZAR">ZAR</option>
 					</select>
 				</div>
-				<label>Amount</label>
-				<input type="text" name="amount" ng-model="amount" id="amount">
-				<input type="submit" value="Submit">
+				<div class="col-md-12" id="calculator-amount">
+					<label>Amount</label>
+					<input type="text" name="amount" ng-model="amount" id="amount">
+				</div>
+				<div class="col-md-12">
+					<input type="submit" value="Submit">
+				</div>
 			</form>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<p>Amount: {{amount}}</p> <!--Replace variable with value-->
-			<p>Converted Amount: {{newAmount}}</span></p> <!--Replace variable with value-->
-			<p>Note: {{note}}</p>
+			<p>Amount: {{amount}}</p>
+			<p>Converted Amount: {{newAmount}}</span></p>
+			<p>Error: {{note}}</p>
 		</div>
 	</div>
 </div>

@@ -15,6 +15,7 @@ module.exports = {
 
 		router.get('/', this.index);
 		router.post('/', this.submit);
+		router.get('/', this.latest);
 
 		return router;
 	},
@@ -28,19 +29,21 @@ module.exports = {
 				amount = req.body.amount,
 				newAmount,
 				note;
-		if (( typeof fromCurrency == '' ) || ( toCurrency == '' ) || ( amount == '' )){
-			note = "Please provide an entry for all fields.";
-			console.log(note);
+		if ( isNaN(amount) || ( amount == '' )) {
+			note = "Please provide a numeric amount.";
 			res.render('calculator', {note: note});
 		} else {
 			oxr.latest(function(){
 				fx.rates = oxr.rates;
 				fx.base = oxr.base;
 				
-				newAmount = Math.round(fx(amount).from(fromCurrency).to(toCurrency));
+				newAmount = (fx(amount).from(fromCurrency).to(toCurrency));
 				console.log(newAmount);
 				res.render('calculator', {amount: amount, newAmount: newAmount, success: req.flash('success')});
 			});
 		}
+	},
+	latest(req, res){
+		
 	}
 };
