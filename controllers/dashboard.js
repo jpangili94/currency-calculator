@@ -1,8 +1,9 @@
 const express = require('express'),
  models = require('../models'),
  fx = require('money'),
- oxr = require('open-exchange-rates');
-oxr.set({ app_id: '359eaa80531846d49379a218e6520bac' });
+ oxr = require('open-exchange-rates'),
+ config = require('../config/oxrKey');
+oxr.set({app_id: config.key});
 
 module.exports= {
 	registerRouter() {
@@ -24,7 +25,7 @@ module.exports= {
 			rates = oxr.rates;
 			base = oxr.base;
 			console.log(base);
-			console.log(rates.AED);
+			console.log(rates);
 		});
 		res.render('dashboard', {base: oxr.base, rates: oxr.rates.AED, success: req.flash('success') });
 	}

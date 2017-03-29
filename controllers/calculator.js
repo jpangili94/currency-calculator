@@ -1,8 +1,9 @@
 const express = require('express'),
  models = require('../models'),
  fx = require('money'),
- oxr = require('open-exchange-rates');
-oxr.set({ app_id: '359eaa80531846d49379a218e6520bac' });
+ oxr = require('open-exchange-rates'),
+ config = require('../config/oxrKey');
+oxr.set({app_id: config.key});
 
 module.exports = {
 	registerRouter() {
@@ -28,6 +29,7 @@ module.exports = {
 				toCurrency = req.body.toCurrency,
 				amount = req.body.amount,
 				newAmount,
+				exchRate,
 				note;
 		if ( isNaN(amount) || ( amount == '' )) {
 			note = "Please provide a numeric amount.";
@@ -36,10 +38,14 @@ module.exports = {
 			oxr.latest(function(){
 				fx.rates = oxr.rates;
 				fx.base = oxr.base;
-				
+
 				newAmount = (fx(amount).from(fromCurrency).to(toCurrency));
+
+				exchRate = (newAmount / amount);
+
 				console.log(newAmount);
-				res.render('calculator', {amount: amount, newAmount: newAmount, success: req.flash('success')});
+				console.log(exchRate);
+				res.render('calculator', {amount: amount, newAmount: newAmount, exchRate: exchRate, success: req.flash('success')});
 			});
 		}
 	},
