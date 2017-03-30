@@ -1,10 +1,10 @@
-import { ClientSrcPage } from './app.po';
+import { ClientSidePage } from './app.po';
 
-describe('client-src App', function() {
-  let page: ClientSrcPage;
+describe('client-side App', function() {
+  let page: ClientSidePage;
 
   beforeEach(() => {
-    page = new ClientSrcPage();
+    page = new ClientSidePage();
   });
 
   it('should display message saying app works', () => {
