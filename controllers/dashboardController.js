@@ -3,7 +3,7 @@ const express = require('express'),
  fx = require('money'),
  oxr = require('open-exchange-rates'),
  config = require('../config/oxrKey');
-s
+
 oxr.set({app_id: config.key});
 
 module.exports= {

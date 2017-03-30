@@ -50,27 +50,17 @@ db.once('open', function() {
 	// Load Models
 	app.models = require('./models/index');
 
-	// Load Controllers
-	// const indexController = require('./controllers/indexController'),
-	//  calculatorController = require('./controllers/calculatorController'),
-	//  dashboardController = require('./controllers/dashboardController'),
-	//  usersController = require('./controllers/usersController');
-
-	// Mount Controllers
-	// app.use('/', indexController.registerRouter());
-	// app.use('/calculator', calculatorController.registerRouter());
-	// app.use('/dashboard', dashboardController.registerRouter());
-	// app.use('/users', usersController.registerRouter());
-
 	// Load Routes
 	const index = require('./routes/index'),
+		calculator = require('./routes/calculator'),
 		dashboard = require('./routes/dashboard'),
 		users = require('./routes/users');
 
 	// Routes Middleware
-	app.use('/', index);
-	app.use('/dashboard', dashboard);
-	app.use('/users', users);
+	app.use('/', index.registerRouter());
+	app.use('/calculator', calculator.registerRouter());
+	app.use('/dashboard', dashboard.registerRouter());
+	app.use('/users', users.registerRouter());
 
 	// Export the app
 	module.exports = app;
