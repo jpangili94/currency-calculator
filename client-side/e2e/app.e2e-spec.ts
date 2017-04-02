@@ -1,6 +1,6 @@
 import { ClientSidePage } from './app.po';
 
-describe('client-side App', function() {
+describe('client-side App', () => {
   let page: ClientSidePage;
 
   beforeEach(() => {
