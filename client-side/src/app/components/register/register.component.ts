@@ -47,10 +47,10 @@ export class RegisterComponent implements OnInit {
     // Register User - is an observable so I need to subscribe to it
     this.authService.registerUser(user).subscribe(data => {
       if(data.success) {
-        this.flashMessage.show("There are no mistakes, only happy accidents - Bob Ross. \nCongrats on registering!", {cssClass: 'alert-success', timeout: 5000});
+        this.flashMessage.show("There are no mistakes, only happy accidents - Bob Ross. \nCongrats on registering!", {cssClass: 'alert-success', timeout: 10000});
         this.router.navigate([ '/login' ]);
       } else {
-        this.flashMessage.show("But it's a journey and the sad thing is you only learn from experience, so as much as someone can tell you things, you have to go out there and make your own mistakes in order to lear - Emma Watson. Re-register.", {cssClass: 'alert-danger', timeout: 5000});
+        this.flashMessage.show("But it's a journey and the sad thing is you only learn from experience, so as much as someone can tell you things, you have to go out there and make your own mistakes in order to lear - Emma Watson. Re-register.", {cssClass: 'alert-danger', timeout: 10000});
         this.router.navigate([ '/register' ]);
       }
     });
